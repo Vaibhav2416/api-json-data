@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Login Page</h1>
+    <form action="">
+        <input type="text" name="" placeholder="Enter Email" id="email">
+        <input type="text" name="" placeholder="Enter Password" id="pass">
+        <button id="submitbutton" type="submit">Login</button>
+    </form>
+</body>
+</html>
+<script>
+   
+let key
+     const userData=async()=>{
+        event.preventDefault()
+        let email=document.getElementById("email").value
+        let pass=document.getElementById("pass").value
+        
+        let obj={
+            email:email,
+            password:pass
+        }
+        console.log(obj)
+
+        let resp=await fetch("https://reqres.in/api/login",{
+            method:"POST",
+            headers: {
+              'Content-Type': 'application/json'
+             },
+             body:JSON.stringify(obj)
+        })
+
+        let data= await resp.json()
+
+        key=data.token
+        // console.log(key)
+        localStorage.setItem("userkey",JSON.stringify(key))
+        alert("You are being redirected to Admin Page")
+
+    }
+
+    document.getElementById("submitbutton").addEventListener("click", userData)
+
+</script>

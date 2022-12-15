@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #formData{
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <h1>Admin Page</h1>
+    <form action="" id="formData">
+        <input type="text" name="" id="" placeholder="Book Cover Image">
+        <input type="text" name="" id="" placeholder="Name of the book">
+        <input type="text" name="" id="" placeholder="Author">
+        <input type="text" name="" id="" placeholder="Genre">
+        <input type="text" name="" id="" placeholder="Edition">
+        <input type="text" placeholder="Publisher">
+        <input type="text" placeholder="cost" name="" id="">
+        <button>Submit</button>
+    </form>
+</body>
+</html>
+<script>
+    let user=JSON.parse(localStorage.getItem("userkey")) || null
+    console.log(user)
+    if(user==null){
+        
+        window.location.href="login.html"
+        alert("You need to login first")
+    } 
+
+
+</script>
