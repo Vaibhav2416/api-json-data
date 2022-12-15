@@ -15,14 +15,14 @@
 <body>
     <h1>Admin Page</h1>
     <form action="" id="formData">
-        <input type="text" name="" id="" placeholder="Book Cover Image">
-        <input type="text" name="" id="" placeholder="Name of the book">
-        <input type="text" name="" id="" placeholder="Author">
-        <input type="text" name="" id="" placeholder="Genre">
-        <input type="text" name="" id="" placeholder="Edition">
-        <input type="text" placeholder="Publisher">
-        <input type="text" placeholder="cost" name="" id="">
-        <button>Submit</button>
+        <input type="text" name="" id="cover" placeholder="Book Cover Image">
+        <input type="text" name="" id="name" placeholder="Name of the book">
+        <input type="text" name="" id="author" placeholder="Author">
+        <input type="text" name="" id="genre" placeholder="Genre">
+        <input type="text" name="" id="edition" placeholder="Edition">
+        <input type="text" placeholder="Publisher" id="publisher">
+        <input type="text" placeholder="cost" name="" id="cost">
+        <button id="submitData">Submit</button>
     </form>
 </body>
 </html>
@@ -35,5 +35,40 @@
         alert("You need to login first")
     } 
 
+    document.getElementById("submitData").addEventListener("click",saveData)
 
+
+  async function saveData(){
+        event.preventDefault()
+        let cover=document.getElementById("cover").value
+        let name=document.getElementById("name").value
+        let author=document.getElementById("author").value
+        let genre=document.getElementById("genre").value
+        let edition=document.getElementById("edition").value
+        let publisher=document.getElementById("publisher").value
+        let cost=document.getElementById("cost").value
+    
+
+        let obj={
+            image_url:cover,
+            book_name:name,
+            author:author,
+            genre:genre,
+            edition:edition,
+            publisher:publisher,
+            cost:cost
+        }
+
+
+        let resp=await fetch("https://pantsuit-leopard.cyclic.app/items",{
+            method:"POST",
+            headers: {
+              'Content-Type': 'application/json'
+             },
+             body:JSON.stringify(obj)
+        })
+
+        let data=await resp.json()
+        console.log(data)
+    }
 </script>
